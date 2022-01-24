@@ -1,0 +1,22 @@
+
+.block{
+    border: solid 2px black;
+    padding: 20px;
+    width: 550px;
+    margin: auto;
+}
+
+.inputForm {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.btn{
+    background-color: blueviolet;
+    color: white;
+    border-radius: 30px;
+    padding: 10px;
+    text-align: center;
+    width: 30%;
+}

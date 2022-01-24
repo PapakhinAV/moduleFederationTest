@@ -1,0 +1,18 @@
+body{
+    background: url('./images/background.jpg');
+    background-size: 100%;
+    color: cornsilk;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+.mainBlock{
+    border: cornsilk 3px solid;
+    width: 50%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
