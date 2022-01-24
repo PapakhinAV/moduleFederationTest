@@ -1,8 +1,8 @@
 
 .block{
-    border: solid 2px black;
+    
     padding: 20px;
-    width: 550px;
+    width: 80%;
     margin: auto;
 }
 
@@ -10,13 +10,21 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: center;
 }
 
 .btn{
-    background-color: blueviolet;
-    color: white;
     border-radius: 30px;
     padding: 10px;
     text-align: center;
-    width: 30%;
+    width: 200px;
+    border: solid 3px white;
+}
+
+.inputField{
+    width: 40%;
+    padding: 10px;
+    border-radius: 20px;
+    border: solid 3px white;
+
 }

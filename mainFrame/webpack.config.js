@@ -2,7 +2,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 const webpack = require('webpack');
+const deps = require('./package').dependencies;
 
 module.exports = (env, argv) => {
     const isProduction = argv.mode === 'production';
@@ -41,6 +43,22 @@ module.exports = (env, argv) => {
                 template: './src/index.html',
             }),
             new CleanWebpackPlugin(),
+            new ModuleFederationPlugin({
+                remotes: {
+                    containerNameList: 'containerNameList@http://127.0.0.1:8087/List.js',
+                    containerNameForm: 'containerNameForm@http://127.0.0.1:8086/AddNewForm.js'
+                },
+                shared: {
+                    react: {
+                        requiredVersion: deps.react,
+                        singleton: true,
+                    },
+                    'react-dom': {
+                        requiredVersion: deps['react-dom'],
+                        singleton: true,
+                    },
+                },
+            }),
         ],
         devServer: {
             port: '8085',

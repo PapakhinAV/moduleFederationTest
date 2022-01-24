@@ -8,7 +8,7 @@ const getData = async (req, res) => {
 const addData = async (req, res) => {
     const reqData = await req.body
     DB.push(reqData)
-    res.sendStatus(200)
+    res.send(DB)
 }
 
 module.exports = { getData, addData }

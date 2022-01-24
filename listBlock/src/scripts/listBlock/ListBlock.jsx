@@ -1,25 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import './style.scss';
+/* eslint-disable react/prop-types */
+import React from 'react';
+import { v4 as uuid } from 'uuid';
+import styles from './styles.module.scss';
 
-export function ListBlock() {
-    async function getData() {
-        const response = await fetch('http://127.0.0.1:4444');
-        const result = await response.json();
-        return result;
-    }
-
-    const [list, setList] = useState([]);
-    useEffect(async () => {
-        const result = await getData();
-        setList(result);
-    }, []);
-
+function ListBlock({ list }) {
     return (
-        <div className="block">
-            <ul className="todoList">
+        <div className={styles.block}>
+            <ul className={styles.todoList}>
                 {
                     list.map((el) => (
-                        <li className="row">
+                        <li key={uuid()} className={styles.row}>
                             <div>{el.item}</div>
                         </li>
                     ))
@@ -28,3 +18,5 @@ export function ListBlock() {
         </div>
     );
 }
+
+export default ListBlock;

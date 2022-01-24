@@ -1,11 +1,16 @@
-import React, { useState } from 'react'
-import './style.scss';
+import React, { useState, useEffect } from 'react'
+import styles from './styles.module.scss';
 import { v4 as uuid } from 'uuid';
 
 
-export const AddNew = () => {
+const AddNew = ({ setList }) => {
 
-    async function addData(data, clear) {
+    useEffect(() => {
+        let isMounted = true
+        return isMounted = false
+    }, [])
+
+    async function addData(data) {
         const reqData = {
             id: uuid(),
             item: data,
@@ -17,11 +22,13 @@ export const AddNew = () => {
             },
             body: JSON.stringify(reqData),
         });
-        if (response.ok) {
-            clear('');
+        const result = await response.json()
+        if (result) {
+            setList(result);
         } else {
             console.log('ERROR', response);
         }
+        setInputText('');
     }
 
     const [inputText, setInputText] = useState('')
@@ -31,16 +38,18 @@ export const AddNew = () => {
     }
 
     function handlerButton() {
-        console.log('presss');
         addData(inputText, setInputText)
     }
+
     return (
-        <div className='block'>
-            <div className='inputForm'>
-                <div className='message'>Введите новую задачу</div>
-                <input value={inputText} onChange={(e) => { handlerInput(e) }} className='inputField' type="text" />
-                <button onPointerDown={() => { handlerButton() }} className='btn'>Добавить</button>
+        <div className={styles.block}>
+            <div className={styles.inputForm}>
+                <div className={styles.message}>Введите новую задачу</div>
+                <input value={inputText} onChange={(e) => { handlerInput(e) }} className={styles.inputField} type="text" />
+                <button onPointerDown={() => { handlerButton() }} className={styles.btn}>Добавить</button>
             </div>
         </div >
     )
 }
+
+export default AddNew

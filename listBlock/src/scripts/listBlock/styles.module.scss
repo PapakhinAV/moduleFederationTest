@@ -1,9 +1,12 @@
 
 .block{
-    border: solid 2px black;
+
     padding: 20px;
     width: 550px;
     margin: auto;
+    border-left: solid 1px white;
+    border-right: solid 1px white;
+
 }
 
 .inputForm {
@@ -12,6 +15,3 @@
     justify-content: space-around;
 }
 
-.btn{
-    
-}
